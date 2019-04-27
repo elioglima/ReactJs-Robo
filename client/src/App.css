@@ -1,0 +1,27 @@
+h1 {
+  text-align: center;
+}
+
+.card {
+  display: flex;
+  padding: 1em;
+  border: 1px solid #eee;
+  margin: 1em;
+  box-shadow: 2px 4px 4px #eee;
+  justify-content: space-between;
+}
+
+.form {
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  bottom: 0;
+  padding: 1em;
+  width: 100%;
+  border-top: 1px solid #eee;
+  box-sizing: border-box;
+}
+
+.form input {
+  width: 100%;
+}
