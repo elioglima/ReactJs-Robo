@@ -2,9 +2,11 @@ import React, {Component} from "react";
 import { connect } from "react-redux";
 import { Navbar, Nav, FormControl, Form, Button } from 'react-bootstrap';
 import * as Actions from '../../../../../routes/routes_actions'
+import { compose } from "redux";
 
 class Objeto extends Component {
   render() {    
+    console.log(this.props)
     return (  
     <div>      
       <Navbar bg="dark" variant="dark">
@@ -27,4 +29,6 @@ class Objeto extends Component {
 }
 }
 
-export default connect(null,Actions)(Objeto)
+
+
+export default connect(null,compose(Actions))(Objeto)
