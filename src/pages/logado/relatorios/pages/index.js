@@ -9,8 +9,7 @@ class Objeto extends Component {
     return (  
       <div>
         <Navbars dados={this.props.dados} />
-        <h1>Usuários logado</h1>
-        <Button variant="primary" size="sm" active onClick={this.props.Voltar} >Voltar</Button>
+        <h1>Relatórios</h1>
       </div>
     )
   }
