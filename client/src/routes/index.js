@@ -24,12 +24,10 @@ class Routes extends Component {
       <ConnectedRouter history={history}>
         <Switch>
           <Route exact path="/" component={withProps(Acesso, {dados:this.props.dados})} />
-
           <Route exact path="/logado" component={withProps(Logado_Inicio, {dados:this.props.dados})} />
           <Route exact path="/logado/cadastros" component={withProps(Logado_Cadastros, {dados:this.props.dados})} />
           <Route exact path="/logado/relatorios" component={withProps(Logado_Relatorios, {dados:this.props.dados})} />
           <Route exact path="/logado/ajuda" component={withProps(Logado_Ajuda, {dados:this.props.dados})} />
-
         </Switch>
       </ConnectedRouter>
     )
