@@ -1,11 +1,16 @@
 import { push } from "connected-react-router"
+import { Auth_app as Auth } from '../../src/auth_app'
+
+export const Auth_app = ()  => dispatch => {
+  return dispatch(Auth())
+}
 
 export const Logar = (parametros) => dispatch => {
 
   const request = require('request');
   const base64 = require('base-64');
 
-  const URLS = 'http://localhost:5125/api/acesso/auth'
+  const URLS = 'http://localhost:5125/api/acesso/logar'
 
   var token = require('../../../libs/token');
 

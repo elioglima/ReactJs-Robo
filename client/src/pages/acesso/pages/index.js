@@ -12,11 +12,10 @@ class Objeto extends Component {
     pass:''
   }
 
-  // constructor() {
-  //   super()
-  //   // const v = localStorage.getItem('jsonToken')
-  //   // console.log('logar encode:' + v,'decode :' + base64.decode(v), parseInt(10, 10))
-  // }
+  constructor() {
+    super()
+    
+  }
 
   onSubmit = e => {
     e.preventDefault();
@@ -30,7 +29,10 @@ class Objeto extends Component {
 
   }  
 
-  render() {    
+  render() {
+
+    this.props.Auth_app()    
+
     return (
       <div>
         <Navbars dados={this.props.dados} />
