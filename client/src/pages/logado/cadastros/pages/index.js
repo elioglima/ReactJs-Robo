@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import { connect } from "react-redux";
 import * as Actions from "../src/actions";
-import { Button } from 'react-bootstrap';
 import Navbars from './components/nav';
 
 class Objeto extends Component {

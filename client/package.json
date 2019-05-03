@@ -9,6 +9,7 @@
     "bootstrap": "^4.3.1",
     "connected-react-router": "^4.4.1",
     "history": "^4.7.2",
+    "local-storage": "^2.0.0",
     "react": "^16.4.2",
     "react-bootstrap": "^1.0.0-beta.8",
     "react-dom": "^16.4.2",
@@ -23,7 +24,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-  "proxy": "http://api.teste.com.br/v1"
-    
+    "proxy": "http://api.teste.com.br/v1"
   }
 }

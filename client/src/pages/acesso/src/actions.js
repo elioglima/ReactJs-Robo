@@ -1,72 +1,44 @@
 import { push } from "connected-react-router"
-import axios from 'axios'
-import qs from 'qs';
 
-function jsonToURI(jsonObj) {
-  var output = '';
-  var keys = Object.keys(jsonObj);
-  keys.forEach(function(key) {
-      
-      const CHAVE = (key).toString().trim() 
-      const VALOR = jsonObj[key].toString().trim()
-      const PARAMETRO = CHAVE+'='+VALOR+'&'
-      output +=  PARAMETRO;
-  })
-
-  return output.slice(0, -1);
-}
-
-
-function testJSON(text){
-  if (typeof text!=="string"){
-      return (typeof text);
-  }
-
-  try{
-      JSON.parse(text);
-      return true;
-  }
-  catch (error){
-      return error;
-  }
-}
-
-export const Logar = () => dispatch => {
+export const Logar = (parametros) => dispatch => {
 
   const request = require('request');
+  const base64 = require('base-64');
 
   const URLS = 'http://localhost:5125/api/acesso/auth'
 
   var token = require('../../../libs/token');
 
-  const jsonToken = {CHVA:token.CHVA().toString(), DVS:token.Atdvs(), CDE:1, TPI:6001, IDT:'10101010'}
-  const sJSON = JSON.stringify(jsonToURI(jsonToken).toString().trim());
-  let config = {
-  };
-  console.log(jsonToken)
-  
+  const jsonToken = {    
+    CHVA: token.CHVA(),
+    DVS: token.Atdvs(),
+    CDE: 1,
+    TPI: 6001,
+    IDT: '10101010',
+    body: parametros
+  }
+
   request({
     url: URLS,
-    method: 'POST',   
-    json:true, 
+    method: 'POST',
+    json: true,
     body: jsonToken,
-}, (err, response, body) => {
-    if (!err) {
-      console.log(err)
-      return false
+  }, (err, response, body) => {
+
+    try {
+
+      if (response.statusCode === 200) {
+        localStorage.setItem('A1', base64.encode(JSON.stringify(response.body.A1)));  
+        localStorage.setItem('cad', base64.encode(JSON.stringify(response.body.cad)));  
+        dispatch(push('logado'))
+      }
+
+      alert(response.body.Response)
+
+    } catch (error) {
+      console.log(response)
     }
 
-    console.log(body)
-
-});
-
- 
-
-  // var token = require('../../../libs/token');
-  // const json = {CHVA:token.CHVA, DVS:token.Atdvs(), CDE:1, TPI:6001, IDT:'10101010'}
-  // console.log(json);
-  // const jsonRetorno = token.keygen(json)
-  // console.log(jsonRetorno);
-  
+  });
 
 }

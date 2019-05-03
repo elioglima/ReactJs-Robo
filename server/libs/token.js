@@ -16,34 +16,34 @@ var keygen = (client) => {
     var base64 = require('base-64');
 
     if(!client.hasOwnProperty('CHVA')) 
-        return {Status: 5001, Response:"Authenticação não autorizada."};
+        return {StatusCode:203, Status: 5001, Response:"Authenticação não autorizada."};
 
     if(!client.hasOwnProperty('DVS')) 
-        return {Status: 5002, Response:"Authenticação não autorizada."};
+        return {StatusCode:203,Status: 5002, Response:"Authenticação não autorizada."};
 
     if(!client.hasOwnProperty('CDE')) 
-        return {Status: 5003, Response:"Authenticação não autorizada."};
+        return {StatusCode:203, Status: 5003, Response:"Authenticação não autorizada."};
 
     if(!client.hasOwnProperty('TPI')) 
-        return {Status: 5004, Response:"Authenticação não autorizada."};
+        return {StatusCode:203, Status: 5004, Response:"Authenticação não autorizada."};
 
     if (client.TPI.toString().trim().length != 4) 
-        return {Status: 5005, Response:"Authenticação não autorizada."};
+        return {StatusCode:203, Status: 5005, Response:"Authenticação não autorizada."};
 
     if(!client.hasOwnProperty('IDT')) 
-        return {Status: 5006, Response:"Authenticação não autorizada."};    
+        return {StatusCode:203, Status: 5006, Response:"Authenticação não autorizada."};    
     
     if (client.CHVA != CHVA) 
-        return {Status: 5007, Response:"Authenticação não autorizada."};
+        return {StatusCode:203, Status: 5007, Response:"Authenticação não autorizada."};
     
     var DVS = client.DVS.trim(); 
     if (DVS.length == 0)  
-        return {Status: 5008, Response:"Authenticação não autorizada."};        
+        return {StatusCode:203, Status: 5008, Response:"Authenticação não autorizada."};        
     
     var DVSdec = base64.decode(DVS).trim();    
 
     if (DVSdec.length <= 5)  
-        return {Status: 5009, Response:"Authenticação não autorizada."};
+        return {StatusCode:203, Status: 5009, Response:"Authenticação não autorizada."};
     
     var dia  = DVSdec.substring(0, 2);
     var mes  = DVSdec.substring(2, 4);
@@ -124,8 +124,9 @@ var keygen = (client) => {
 
     if (B3.toString().trim().length > 1000)
         B34 = B3.substring(100, fint.ifthen((B3.toString().trim().length > 100) && (B3.toString().trim().length < 120), B3.toString().trim().length, 120));
-
+    
     var retorno = {
+        StatusCode:200, 
         Status:200,
         Response:"Authenticação efetuada com sucesso.",    	
         A1: {

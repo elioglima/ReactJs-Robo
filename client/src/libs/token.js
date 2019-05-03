@@ -1,8 +1,4 @@
-'use strict';
-
 import fn_generic from './fn_generic'
-
-const sizeIDT = 15;
 
 var fdate  = require('./fn_date');
 var fstring  = require('./fn_string');
@@ -20,7 +16,7 @@ export const Atdvs = () => {
     d += fn_generic.ifthen(n.getMinutes() < 10, '0', '') 
     d += n.getMinutes()
     
-    var c = base64.encode(d).toString().replace('=', '||')
+    var c = base64.encode(d).toString()
     return c
 }
 
@@ -40,17 +36,17 @@ export const keygen = (client) => {
     if(!client.hasOwnProperty('TPI')) 
         return {Status: 5004, Response:"Authenticação não autorizada."};
 
-    if (client.TPI.toString().trim().length != 4) 
+    if (client.TPI.toString().trim().length !== 4) 
         return {Status: 5005, Response:"Authenticação não autorizada."};
 
     if(!client.hasOwnProperty('IDT')) 
         return {Status: 5006, Response:"Authenticação não autorizada."};    
     
-    if (client.CHVA != CHVA()) 
+    if (client.CHVA !== CHVA()) 
         return {Status: 5007, Response:"Authenticação não autorizada."};
     
     var DVS = client.DVS.trim(); 
-    if (DVS.length == 0)  
+    if (DVS.length === 0)  
         return {Status: 5008, Response:"Authenticação não autorizada."};        
 
     var DVSdec = base64.decode(DVS).trim();    
@@ -78,11 +74,11 @@ export const keygen = (client) => {
     // P1 - DATA DO TOKEN
 
     var data_hoje = new Date();       
-    var A1 = fstring.ifthen(parseInt(data_hoje.getDate())<10,'0','')+data_hoje.getDate().toString();
-    var A2 = fstring.ifthen((parseInt(data_hoje.getMonth())+1)<10,'0','')+(parseInt(data_hoje.getMonth())+1).toString();
+    var A1 = fstring.ifthen(parseInt(data_hoje.getDate(), 10) < 10,'0','').toString() + data_hoje.getDate().toString();
+    var A2 = fstring.ifthen((parseInt(data_hoje.getMonth(), 10)+1)<10,'0','')+(parseInt(data_hoje.getMonth(), 10)+1).toString();
     var A3 = data_hoje.getFullYear();
-    var A4 = fstring.ifthen(parseInt(data_hoje.getHours())<10,'0','')+data_hoje.getHours().toString();
-    var A5 = fstring.ifthen(parseInt(data_hoje.getMinutes())<10,'0','')+data_hoje.getMinutes().toString();
+    var A4 = fstring.ifthen(parseInt(data_hoje.getHours(),10)<10,'0','')+data_hoje.getHours().toString();
+    var A5 = fstring.ifthen(parseInt(data_hoje.getMinutes(),10)<10,'0','')+data_hoje.getMinutes().toString();
             
     // P2 - OPTIONS
     var A6 = fstring.formatLeft(client.CDE, 4, '0');
@@ -93,11 +89,11 @@ export const keygen = (client) => {
     // P3 - DATA VALIDADE TOKEN
     var data_validade = fdate.adds(data_hoje,'minute',30);
     
-    var A9 = fstring.ifthen(parseInt(data_validade.getDate())<10,'0','')+data_validade.getDate().toString();
-    var A10 = fstring.ifthen((parseInt(data_validade.getMonth())+1)<10,'0','')+(parseInt(data_validade.getMonth())+1).toString();
+    var A9 = fstring.ifthen(parseInt(data_validade.getDate(),10)<10,'0','')+data_validade.getDate().toString();
+    var A10 = fstring.ifthen((parseInt(data_validade.getMonth(),10)+1)<10,'0','')+(parseInt(data_validade.getMonth(),10)+1).toString();
     var A11 = data_validade.getFullYear();
-    var A12 = fstring.ifthen(parseInt(data_validade.getHours())<10,'0','')+data_validade.getHours().toString();
-    var A13 = fstring.ifthen(parseInt(data_validade.getMinutes())<10,'0','')+data_validade.getMinutes().toString();
+    var A12 = fstring.ifthen(parseInt(data_validade.getHours(),10)<10,'0','')+data_validade.getHours().toString();
+    var A13 = fstring.ifthen(parseInt(data_validade.getMinutes(),10)<10,'0','')+data_validade.getMinutes().toString();
     
     // P4 - VERIFICADOR - 2=getHours 2=getDate 4=getFullYear 2=getMonth 2=getMinutes  
     var Verificador = A4.toString()+A1.toString()+A3.toString()+A2.toString()+A5.toString();
@@ -222,7 +218,7 @@ export const decodificar = (client) => {
     var data_verificador = new Date(sdata_verificador);    
 
     var data_hoje = fdate.NowToDHM();
-    if (data_token.getTime() != data_verificador.getTime())
+    if (data_token.getTime() !== data_verificador.getTime())
         return {Status: 5002, Response:"Não foi possível validar o token."};
     
     if (data_token < fdate.adds(data_hoje, 'minute', -30)) 

@@ -6,7 +6,6 @@ import { compose } from "redux";
 
 class Objeto extends Component {
   render() {    
-    console.log(this.props)
     return (  
     <div>      
       <Navbar bg="dark" variant="dark">
