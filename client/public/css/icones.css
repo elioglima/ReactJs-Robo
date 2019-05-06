@@ -1,0 +1,27 @@
+.icone {
+    float: left;
+    width: 15%;
+    padding: 5px 5px 5px 5px;
+    background-color: cornsilk;
+}
+
+@media screen and (min-width: 320px) {
+    /* iphone 5 */
+    .icone {
+        background-color: chartreuse;
+    }
+}
+
+@media screen and (min-width: 360px) {
+    /* galax s5 */
+    .icone {
+        background-color: chartreuse;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .icone {
+        background-color: cornflowerblue;
+    }
+}
+

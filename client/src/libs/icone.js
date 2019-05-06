@@ -1,0 +1,3 @@
+icone = (tipo, fonte) => {
+
+}
