@@ -1,8 +1,8 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as Actions from "../src/actions";
-import { Container, Row,Form, Button } from 'react-bootstrap';
-import Navbars from './components/nav';
+import { Button, Form, Grid, Header, Image, Message, Segment} from 'semantic-ui-react';
+// import Navbars from './components/nav';
 import base64 from 'base-64';    
 
 class Objeto extends Component {
@@ -29,39 +29,62 @@ class Objeto extends Component {
 
   }  
 
+  onChange = e => {
+
+  }
+
+  onLoadSelect = () => {
+
+  }
+
   render() {
 
-    this.props.Auth_app()    
+    // if (this.props.Auth_app()) return false
+    this.onLoadSelect()
+    
+    return (     
+      <div className='login-form'>
+    {/*
+      Heads up! The styles below are necessary for the correct render of this example.
+      You can do same with CSS, the main idea is that all the elements up to the `Grid`
+      below must have a height of 100%.
+    */}
+    <style>{`
+      body > div,
+      body > div > div,
+      body > div > div > div.login-form {
+        height: 100%;
+      }
+    `}
+    </style>
+    <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
+      <Grid.Column style={{ maxWidth: 450 }}>
+        <Header as='h2' color='teal' textAlign='center'>
+          <Image src='/logo.png' /> Log-in to your account
+        </Header>
+        <Form size='large'>
+          <Segment stacked>
+            <Form.Input fluid icon='user' iconPosition='left' placeholder='E-mail address' />
+            <Form.Input
+              fluid
+              icon='lock'
+              iconPosition='left'
+              placeholder='Password'
+              type='password'
+            />
 
-    return (
-      <div>
-        <Navbars dados={this.props.dados} />
-        <Container>
-          <Row >
-        <Form>
-          <Form.Group controlId="formBasicEmail">
-            <Form.Label>Email address</Form.Label>
-            <Form.Control type="email" placeholder="Enter email" value={base64.decode(this.state.name)} onChange={e => this.setState({name: base64.encode(e.target.value)})} />
-            <Form.Text className="text-muted">
-              We'll never share your email with anyone else.
-            </Form.Text>
-          </Form.Group>
-
-      <Form.Group controlId="formBasicPassword">
-        <Form.Label>Password</Form.Label>
-        <Form.Control type="password" placeholder="Password" value={base64.decode(this.state.pass)} onChange={e => this.setState({pass: base64.encode(e.target.value)})} />
-      </Form.Group>
-      <Form.Group controlId="formBasicChecbox">
-        <Form.Check type="checkbox" label="Check me out"/>
-      </Form.Group>
-      <Button variant="primary" type="button" onClick={(e) => this.onSubmit(e)}>
-        Submit
-      </Button>
-      </Form>
-      </Row>
-      </Container>
-      </div>
-      );
+            <Button color='teal' fluid size='large'>
+              Login
+            </Button>
+          </Segment>
+        </Form>
+        <Message>
+          New to us? <a href='#'>Sign Up</a>
+        </Message>
+      </Grid.Column>
+    </Grid>
+  </div>
+      )
       }
       }
 

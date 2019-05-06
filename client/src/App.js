@@ -5,7 +5,7 @@ import store from "./store";
 import Routes from "./routes";
 
 const dados = {
-  titulo: "Maxtime"
+  titulo: "Phenix 0.0.1"
 }
 
 class App extends Component {

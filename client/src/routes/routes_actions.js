@@ -1,21 +1,26 @@
 import { push } from "connected-react-router";
 
-export const logadoInicio = () => dispatch => {
-    dispatch(push("/logado"));
-  }
+export const logadoInicio = (e) => dispatch => {
+  e.preventDefault();
+  dispatch(push("/logado"));
+}
 
-export const logadoCadastros = (event) => dispatch => {      
+export const dispCadastros = (e) => dispatch => {      
+  e.preventDefault();
   dispatch(push("/logado/cadastros"));
 }
 
-export const logadoRelatorios = () => dispatch => {
-    dispatch(push("/logado/relatorios"));
+export const logadoRelatorios = (e) => dispatch => {
+  e.preventDefault();
+  dispatch(push("/logado/relatorios"));
   }
 
-  export const logadoAjuda  = () => dispatch => {
+  export const logadoAjuda  = (e) => dispatch => {
+    e.preventDefault();
     dispatch(push("/logado/ajuda"));
   }  
 
-  export const logadoSair = () => dispatch => {
+  export const logadoSair = (e) => dispatch => {
+    e.preventDefault();
     dispatch(push("/"));
   }  
