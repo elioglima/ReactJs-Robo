@@ -1,6 +1,7 @@
 import { push } from "connected-react-router";
 
-export const logadoInicio = () => dispatch => {
+export const logadoInicio = (e) => dispatch => {
+    e.preventDefault()
     dispatch(push("/logado"));
   }
 

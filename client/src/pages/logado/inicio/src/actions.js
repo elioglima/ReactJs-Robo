@@ -3,8 +3,8 @@ import { SairSistema as APISairSistema  } from '../../../src/applications'
 import * as Actions from '../../../../routes/routes_actions'
 
 
-export const logadoInicio = () => dispatch => {
-  dispatch(Actions.logadoInicio());
+export const logadoInicio = (e) => dispatch => {  
+  dispatch(Actions.logadoInicio(e));
 }
 
 export const logadoCadastros = (event) => dispatch => {      

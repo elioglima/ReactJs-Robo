@@ -1,0 +1,16 @@
+.base_tela {
+    padding-top: 15px;
+    padding-left: 5px;
+}
+
+.icone {
+    float: left;
+    width: 10%;
+    padding: 10px 10px 10px 10px;
+    color: cornflowerblue;
+}
+
+.icone .titulo {
+    width: 100%;
+    text-align: center;
+}
