@@ -1,22 +1,42 @@
 import { push } from "connected-react-router";
+import base64 from 'base-64';
 
-export const logadoInicio = (e) => dispatch => {
+  export const dispInicio = (e) => dispatch => {
     e.preventDefault()
     dispatch(push("/logado"));
   }
 
-export const logadoCadastros = (event) => dispatch => {      
-  dispatch(push("/logado/cadastros"));
-}
+  export const dispAjuda  = (e) => dispatch => {
+    e.preventDefault()
+    dispatch(push("/logado/ajuda"));
+  }    
 
-export const logadoRelatorios = () => dispatch => {
-    dispatch(push("/logado/relatorios"));
+  export const disPesquisaGeral = (e, inp_pesquisa) => dispatch => {    
+    e.preventDefault()
+    localStorage.setItem('inp_pesquisa', base64.encode(inp_pesquisa));  
+    dispatch(push('/pesquisageral'))
   }
 
-  export const logadoAjuda  = () => dispatch => {
-    dispatch(push("/logado/ajuda"));
-  }  
-
-  export const logadoSair = () => dispatch => {
+  export const dispSair = (e) => dispatch => {
+    e.preventDefault()
+    localStorage.setItem('logado', '') 
+    localStorage.setItem('A1', '')  
+    localStorage.setItem('cad', '')  
     dispatch(push("/"));
   }  
+
+  // CADASTROS
+  export const dispCadUsuario = (e) => dispatch => {
+    e.preventDefault()
+    dispatch(push("/cadastro/usuario"));
+  } 
+
+  export const dispCadGrupoAcessoUsuarios = (e) => dispatch => {
+    e.preventDefault()
+    dispatch(push("/cadastro/grupoacessousuario"));
+  } 
+  
+  export const dispPesqCadGrupoAcessoUsuarios = (e) => dispatch => {
+    e.preventDefault()
+    dispatch(push("/cadastro/grupoacessousuario"));
+  } 

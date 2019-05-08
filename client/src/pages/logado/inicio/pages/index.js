@@ -2,10 +2,6 @@ import React, {Component} from "react";
 import { connect } from "react-redux";
 import * as Actions from "../src/actions";
 import Navbars from './components/nav';
-import { Container, Row, Col, Span, Alert } from 'react-bootstrap';
-
-import { Icon } from 'react-icons-kit'
-import * as Inc from 'react-icons-kit/fa'
 
 class Objeto extends Component {
 
@@ -18,16 +14,15 @@ class Objeto extends Component {
     }
   }
 
-  render() {    
+  render() { 
+    
+    this.props.dispChkAuth()    
+
     return (  
       <div>
         <Navbars dados={this.props.dados} />        
-        <div class='col-md-12 bg-secondary text-white' >Bem Vindo, {this.state.nome}</div>
-        <div class="base_tela">
-          <div class='icone'>
-            <Icon icon={Inc.users}  size={'90%'} />
-            <div class='titulo'>Usuários</div>          
-          </div>
+        <div className='col-md-12 bg-secondary text-white' >Bem Vindo, {this.state.nome}</div>
+        <div className="base_tela">          
         </div>     
       </div>
     )

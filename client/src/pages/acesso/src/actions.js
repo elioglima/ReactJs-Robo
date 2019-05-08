@@ -1,10 +1,7 @@
 import { push } from "connected-react-router"
 import { Auth_app as Auth } from '../../src/auth_app'
 
-export const Auth_app = ()  => dispatch => {
-  return dispatch(Auth())
-}
-
+export const Auth_app = ()  => dispatch => { return dispatch(Auth()) }
 export const Logar = (parametros) => dispatch => {
 
   const request = require('request');
@@ -33,6 +30,7 @@ export const Logar = (parametros) => dispatch => {
     try {
 
       if (response.statusCode === 200) {
+        localStorage.setItem('logado', base64.encode(true));  
         localStorage.setItem('A1', base64.encode(JSON.stringify(response.body.A1)));  
         localStorage.setItem('cad', base64.encode(JSON.stringify(response.body.cad)));  
         dispatch(push('logado'))
@@ -41,7 +39,9 @@ export const Logar = (parametros) => dispatch => {
       alert(response.body.Response)
 
     } catch (error) {
-      console.log(response)
+      localStorage.setItem('logado', '');  
+      localStorage.setItem('A1', '');  
+      localStorage.setItem('cad', '');  
     }
 
   });

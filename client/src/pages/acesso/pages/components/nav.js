@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { Dropdown, NavDropdown, Navbar, Nav, FormControl, Form, Button, Drop } from 'react-bootstrap';
+import { FormControl, Form, Button } from 'react-bootstrap';
 
 class Objeto extends Component {
   render() {    
     return (
       <div>
         <nav class="navbar navbar-expand-md bg-dark navbar-dark ">
-        <a class="navbar-brand pb-2" href="#">{this.props.dados.titulo}</a>
+        <a class="navbar-brand pb-2" href="scripts:preventDefault()">{this.props.dados.titulo}</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>

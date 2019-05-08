@@ -1,10 +1,8 @@
 import React, {Component} from "react";
 import { connect } from "react-redux";
 import * as Actions from "../src/actions";
-import { FormControl, Container, Row,Form, Button } from 'react-bootstrap';
-import Navbars from './components/nav';
+import { FormControl,Form, Button } from 'react-bootstrap';
 import base64 from 'base-64';
-
 
 class Objeto extends Component {
   
@@ -13,50 +11,27 @@ class Objeto extends Component {
     pass:''
   }
 
-  constructor() {
-    super()
-    
-  }
-
-  gethtml = (template_str) => {
-    var __html = require(template_str);
-    var template = { __html: __html };
-
-    return React.createClass({
-        render: function () {
-            return (
-                <div dangerouslySetInnerHTML={{__html: '<br><br><br><br><br><br><h1>teste</h1>'}} />
-            );
-        }
-    })
-}
-
   onSubmit = e => {
     e.preventDefault();
-
     var parametros = {
       N: this.state.name,
       P: this.state.pass,
     }
-
     this.props.Logar(parametros)    
-
   }  
 
-
   render() {
-
     this.props.Auth_app()    
 
     return (
       <div>
-        <nav class="navbar navbar-expand-md bg-dark navbar-dark ">
-        <a class="navbar-brand pb-2" href="#">{this.props.dados.titulo}</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+        <nav className="navbar navbar-expand-md bg-dark navbar-dark ">
+        <a className="navbar-brand pb-2" href="scripts:preventDefault()">{this.props.dados.titulo}</a>
+        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon"></span>
         </button>
           
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">          
+            <div className="collapse navbar-collapse" id="navbarNavDropdown">          
             
             </div>
 
