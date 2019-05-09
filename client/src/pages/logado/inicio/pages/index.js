@@ -1,33 +1,77 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as Actions from "../src/actions";
 import Navbars from './components/nav';
-
-class Objeto extends Component {
+import base64 from 'base-64'
+class Objeto extends Component {  
+  
+  timeout = 0
+  months = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"]
+  days = ["Domingo", "Segunda-Feira", "Terça-Feira", "Quarta-Feira", "Quinta-Feira", "Sexta-Feira", "Sabado"]
 
   constructor() {
     super()
-    const base64 = require('base-64');
-    const v = localStorage.getItem('cad')    
+    const v = localStorage.getItem('cad')
+    let d = new Date()
     this.state = {
-      nome: JSON.parse(base64.decode(v)).nome
+      nome: JSON.parse(base64.decode(v)).nome,
+      day: d.getDay(),
+      month: d.getMonth(),
+      date: d.getDate(),
+      year: d.getFullYear(),
+      time: d.toLocaleTimeString(),
+      data_exibicao: ''    
     }
+    this.countingSecond = this.countingSecond.bind(this)
   }
 
-  render() { 
-    
-    this.props.dispChkAuth()    
+  componentWillMount() {    
+    this.timeout = setInterval(this.countingSecond, 1000) 
+    this.countingSecond()
+  }
 
-    return (  
+  componentWillUnmount() {    
+    clearInterval(this.timeout);    
+  }
+
+  countingSecond() {   
+    let d = new Date()
+    this.setState({
+      day: d.getDay(),
+      month: d.getMonth(),
+      date: d.getDate(),
+      year: d.getFullYear(),
+      time: d.toLocaleTimeString(),
+      data_exibicao: this.state.day 
+            + '/' + this.state.month 
+            + '/' + this.state.year 
+            + ' ' + this.state.time
+    })
+
+
+
+  }
+
+
+  render() {
+    this.props.dispChkAuth()
+
+    return (
       <div>
-        <Navbars dados={this.props.dados} />        
-        <div className='col-md-12 bg-secondary text-white' >Bem Vindo, {this.state.nome}</div>
-        <div className="base_tela">          
-        </div>     
+        <Navbars dados={this.props.dados} />
+        <div className='col-md-12 bg-secondary text-white' >Bem Vindo, {this.state.nome}
+        <span className="float-right">{this.state.data_exibicao}</span>
+        </div>
+        <div className="base_tela">
+
+          <div className='timeclock-main'>
+          </div>
+
+        </div>
       </div>
     )
   }
 }
 
-export default connect(null,Actions)(Objeto);
+export default connect(null, Actions)(Objeto);
 

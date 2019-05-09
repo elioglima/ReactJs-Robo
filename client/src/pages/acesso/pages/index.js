@@ -21,6 +21,7 @@ class Objeto extends Component {
   }  
 
   render() {
+
     this.props.Auth_app()    
 
     return (

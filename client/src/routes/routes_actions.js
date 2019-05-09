@@ -28,15 +28,15 @@ import base64 from 'base-64';
   // CADASTROS
   export const dispCadUsuario = (e) => dispatch => {
     e.preventDefault()
-    dispatch(push("/cadastro/usuario"));
+    dispatch(push("/cadastrousuario"));
   } 
 
   export const dispCadGrupoAcessoUsuarios = (e) => dispatch => {
     e.preventDefault()
-    dispatch(push("/cadastro/grupoacessousuario"));
+    dispatch(push("/grupoacessousuario"));
   } 
   
   export const dispPesqCadGrupoAcessoUsuarios = (e) => dispatch => {
     e.preventDefault()
-    dispatch(push("/cadastro/grupoacessousuario"));
+    dispatch(push("/grupoacessousuario"));
   } 
