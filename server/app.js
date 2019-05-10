@@ -11,6 +11,10 @@ const mysql = require('mysql');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var conexao = require('./database/conexao');
+conexao.query('select * from adv_usuario')
+  .then((p)=>{ console.log(p)})
+  .catch((p) => { console.log(p) })
 
 var app = express();
 
@@ -62,16 +66,4 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-
-
-
 module.exports = app;
-
-// var postTest = require('./ClientHttp/postTest');
-// async function Thread1() {  
-//   await delay(1000);     
-//   postTest.executa();    
-//   Thread1();
-// }
-
-// Thread1();

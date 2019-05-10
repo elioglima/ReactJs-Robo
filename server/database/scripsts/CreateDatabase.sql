@@ -1,0 +1,1 @@
+CREATE SCHEMA `db_advanced` DEFAULT CHARACTER SET utf8 ;

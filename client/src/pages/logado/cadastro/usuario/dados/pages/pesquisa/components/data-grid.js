@@ -21,19 +21,15 @@ class Objeto extends React.Component {
     this.setState(state => {
       const rows = state.rows.slice();
       for (let i = fromRow; i <= toRow; i++) {
-          console.log(i, rows[i])
         rows[i] = { ...rows[i], ...updated };
       }
       return { rows };
     });
   };
 
-  onLoadDados = () => {
-    this.setState({rows:this.props.Rows})
-  }
+  onLoadDados = () => { this.setState({rows:this.props.Rows}) }
 
   render() {
-    
     return (
       <div>
         <ReactDataGrid
