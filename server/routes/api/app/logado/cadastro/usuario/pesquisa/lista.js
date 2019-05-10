@@ -10,13 +10,6 @@ router.post('/', function (req, res) {
         return true
     }
 
-    var sSQL = 'select id, nome from usuarios';
-    pool.query(sSQL, function (err, result, fields) {
-        if (err) res.json(err)
-        console.log(result)
-        
-    });
-
     const Rows = [
         {id:1, name:'Elio Gonçalves de Lima', grupo:'Administrador'},
         {id:2, name:'Pedro Alves', grupo:'Administrador'},

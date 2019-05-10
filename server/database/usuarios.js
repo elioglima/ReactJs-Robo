@@ -1,12 +1,12 @@
-var conexao = require('./conexao');
+var query = require('./query');
+var Rows = []
 
-
-query = () => {
+listar = () => {
     var sSQL = 'select id, nome from adv_usuario';
-    conexao.query(sSQL, function (err, result, fields) {
-        if (err) res.json(err)
-        // res.json(result);
+    query(sSQL, function (err, result, fields) {
+        if (err) console.log(err)
+        console.log(result)
     });
 }
         
-module.exports = router;
+module.exports = listar;

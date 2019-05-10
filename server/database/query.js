@@ -20,9 +20,9 @@ aquery = (sSQL) => {
     )     
 }
 
-module.exports.query = (s)  =>  { 
+var query 
+
+module.exports = (s)  =>  { 
     async function Execute(x) { return await aquery(x); }
     return Execute(s)
-}
-
-//module.exports = pool
+}  

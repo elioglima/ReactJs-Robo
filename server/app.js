@@ -11,10 +11,9 @@ const mysql = require('mysql');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var conexao = require('./database/conexao');
-conexao.query('select * from adv_usuario')
-  .then((p)=>{ console.log(p)})
-  .catch((p) => { console.log(p) })
+
+// var usuario = require('./database/usuarios');
+// usuario.listar()
 
 var app = express();
 
