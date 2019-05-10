@@ -38,6 +38,9 @@ app.use('/bots', require('./routes/bots'));
 // api do bot
 app.use('/api/acesso/logar', require('./routes/api/acesso/auth_login'));
 app.use('/api/acesso/auth', require('./routes/api/acesso/auth_app'));
+
+app.use('/api/app/logado/cadastro/usuario/pesquisa/lista', require('./routes/api/app/logado/cadastro/usuario/pesquisa/lista'));
+
 app.use('/bots/api/browser/acesso/auth', require('./routes/bots/api/browser/auth_app'));
 app.use('/bots/api/browser/mensagens', require('./routes/bots/api/browser/lista_mensagens'));
 app.use('/bots/api/browser/mensagens/enviar', require('./routes/bots/api/browser/recebe_mensagem'));

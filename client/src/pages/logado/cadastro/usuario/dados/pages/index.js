@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as Actions from "../src/actions";
-import { Button } from 'react-bootstrap';
 
+// importações da tela
+import MenuSuperior from "./components/MenuSuperior";
 import Pesquisa from "./pesquisa";
 import Cadastro from "./cadastro";
 
@@ -10,22 +11,12 @@ class Objeto extends Component {
 
   onSubmit = e => { e.preventDefault(); }
 
-  constructor() {
-    super();   
-
-  }
-
-  componentWillMount() { 
-    
+  componentWillMount() {     
     this.setState({
       pg_pesquisar: true,
       pg_novo: false
     })
-
     this.handleClick = this.handleClick.bind(this);   
-  }
-
-  componentWillUnmount() {    
   }
 
   handleClick(acao) {
@@ -46,28 +37,9 @@ class Objeto extends Component {
   render() {
     return (      
       <div>
-        <nav className="navbar navbar-expand-md bg-dark navbar-dark ">
-          <a className="navbar-brand pb-2" href="scripts:preventDefault()">{this.props.dados.titulo}</a>
-          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-          </button>
-
-          <div className="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul className="navbar-nav">
-              <li className="nav-item">
-                <a className="nav-link" href="scripts:preventDefault()" onClick={e => this.props.dispInicio(e)}>Inicio</a>
-              </li>
-              <li className="nav-item active">
-                <a className="nav-link" href="scripts:preventDefault()">Usuário</a>
-              </li>
-            </ul>
-          </div>
-
-          &nbsp;&nbsp;<Button className="" variant="danger" size="sm" onClick={this.props.dispSair}>Sair</Button>
-        </nav>
+        <MenuSuperior dados={this.props.dados} />
 
         <div className='col-md-12 bg-secondary text-white pa mb-3' >Cadastro de Usuários</div>
-
           <div className="col-md-3 float-left m-0 p-0">
             <div className="card ml-2">
               <ul className="list-group list-group-flush">
@@ -80,7 +52,7 @@ class Objeto extends Component {
 
           <div className="col-md-9 float-left m-0">
             <div className="card">
-              {
+              { 
                 (() => {
                   
                   if (this.state.pg_cadastro) 
