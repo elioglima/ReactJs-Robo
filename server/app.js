@@ -12,8 +12,8 @@ const mysql = require('mysql');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
-// var usuario = require('./database/usuarios');
-// usuario.listar()
+var usuario = require('./database/usuarios');
+usuario.query()
 
 var app = express();
 

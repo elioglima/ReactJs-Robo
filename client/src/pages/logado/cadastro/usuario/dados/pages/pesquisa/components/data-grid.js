@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import ReactDOM from "react-dom";
 import ReactDataGrid from "react-data-grid";
 
 
@@ -25,7 +24,12 @@ class Objeto extends React.Component {
       }
       return { rows };
     });
-  };
+  }
+
+  onRowDoubleClick = (r, c) => {
+      console.log('ok', r, c.id)
+      this.props.handleClick('editar', c.id)   
+  }
 
   onLoadDados = () => { this.setState({rows:this.props.Rows}) }
 
@@ -37,6 +41,7 @@ class Objeto extends React.Component {
           rowGetter={i => this.props.Rows[i]}
           rowsCount={this.props.Rows.length}
           onGridRowsUpdated={this.onGridRowsUpdated}
+          onRowDoubleClick={this.onRowDoubleClick.bind(this)}
           enableCellSelect={false}
           enableCellAutoFocus={true}
           minHeight={450}

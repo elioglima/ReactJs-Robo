@@ -1,4 +1,4 @@
 # DADOS DE CONEXÃO
 
 * usuario: root
-* senha: adv@102030
+* senha: AB@102030

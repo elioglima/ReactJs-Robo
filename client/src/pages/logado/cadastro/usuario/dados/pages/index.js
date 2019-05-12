@@ -19,11 +19,19 @@ class Objeto extends Component {
     this.handleClick = this.handleClick.bind(this);   
   }
 
-  handleClick(acao) {
+  handleClick(acao, params) {
     if (acao == 'novo') {
       this.setState({
         pg_pesquisar: false,
         pg_cadastro: true
+      })
+    
+    } else if (acao == 'editar') {
+      console.log('editando', params)
+      this.setState({
+        pg_pesquisar: false,
+        pg_cadastro: true,
+        id_localizado: params
       })
     
     } else if (acao == 'pesquisar') {
@@ -59,7 +67,7 @@ class Objeto extends Component {
                     return <Cadastro />
 
                   else if (this.state.pg_pesquisar) 
-                    return <Pesquisa />
+                    return <Pesquisa handleClick={this.handleClick.bind(this)} />
 
                 })()
               }

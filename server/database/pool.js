@@ -16,11 +16,11 @@ var tpdb = 'json'
 // });
 
 var pool = mysql.createPool({
-    // connectionLimit: 10,
+    connectionLimit: 10,
     host: 'localhost',
     user: 'root',
-    password: 'adv@102030',
-    database: 'db_advanced',
+    password: 'AB@102030',
+    database: 'dataservice',
   insecureAuth : true,
 
 })

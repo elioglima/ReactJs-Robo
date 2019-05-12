@@ -6,7 +6,7 @@ aquery = (sSQL) => {
         function(resolve, reject) { 
             try {
                 pool.query(sSQL, function (err, result, fields) {
-                    if (err) reject(err)
+                if (err) reject(err)
                     resolve({
                         err:err, 
                         result:result, 
@@ -19,8 +19,6 @@ aquery = (sSQL) => {
         }
     )     
 }
-
-var query 
 
 module.exports = (s)  =>  { 
     async function Execute(x) { return await aquery(x); }

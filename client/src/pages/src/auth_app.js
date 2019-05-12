@@ -4,8 +4,8 @@ export const Auth_app = () => dispatch => {
   
   const logado = localStorage.getItem('logado');  
   
-  if (logado.toString().trim().length === 0) 
-    return false
+  if ((logado === null) || (logado === undefined)) return false
+  if (logado.toString().trim().length === 0)  return false
 
     const request = require('request');
     const base64 = require('base-64');

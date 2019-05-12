@@ -4,6 +4,7 @@ import { FormControl, Form, Button } from 'react-bootstrap';
 import DataGrids from './components/data-grid'
 import * as Actions from "./src";
 
+
 class Objeto extends Component {
 
   state = {
@@ -11,8 +12,14 @@ class Objeto extends Component {
     pesquisa: ''
   }
 
+  componentWillMount() {    
+    this.onPesquisar(null)
+  }
+
   onPesquisar = (e) => {
-    e.preventDefault()
+    if (e !== null)
+      e.preventDefault()
+
     this.props.api_lista_usuarios(this.state.pesquisa)
       .then((p) => {
         this.setState({ Rows: p.body.Rows })
@@ -30,7 +37,7 @@ class Objeto extends Component {
             <Button variant="info" size="sm" onClick={e => this.onPesquisar(e)} >Pesquisar</Button>
           </Form>
         </nav>
-        <DataGrids Rows={this.state.Rows} />
+        <DataGrids Rows={this.state.Rows} handleClick={this.props.handleClick.bind(this)} />
       </div>
     );
   }
