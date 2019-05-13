@@ -11,27 +11,25 @@ router.post('/', function (req, res) {
     }
 
     var usuario = require('../../../../../../../database/usuarios');
-    var sSQL = 'select u.id, u.nome, g.descricao '
+    var sSQL = 'select u.id, u.nome, u.email, u.senha, u.grupo, g.descricao '
     sSQL += ' from usuario u '
     sSQL += ' join usuario_grupo g on u.grupo = g.id '
-    sSQL += ' limit 0,100 '
+    sSQL += ' where u.id = ' + req.body.params.id
+    sSQL += ' limit 0,1 '
     usuario.query(sSQL).then(() => {        
-        
-        let Rows = []
-        
-        for (let index = 0; index < usuario.Rows.length; index++) {
-            const element = usuario.Rows[index];
-            const Row = {
-                id:element[0],
-                name:element[1],
-                grupo:element[2],
+
+        const Row = {
+                id:usuario.getCell(0,'id'),
+                nome:usuario.getCell(0,'nome'),
+                email:usuario.getCell(0,'email'),
+                senha:usuario.getCell(0,'senha'),
+                grupo:usuario.getCell(0,'grupo'),
+                grupo_descricao:usuario.getCell(0,'descricao'),
             }
 
-            Rows.push(Row)
-        } 
 
         res.status(200).json({
-            Rows:Rows
+            Row:Row
         });     
     
     }).catch((err) => {

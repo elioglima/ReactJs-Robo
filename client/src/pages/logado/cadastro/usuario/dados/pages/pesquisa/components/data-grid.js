@@ -27,7 +27,6 @@ class Objeto extends React.Component {
   }
 
   onRowDoubleClick = (r, c) => {
-      console.log('ok', r, c.id)
       this.props.handleClick('editar', c.id)   
   }
 

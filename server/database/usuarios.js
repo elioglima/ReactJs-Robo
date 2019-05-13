@@ -1,48 +1,37 @@
-var tool_query = require('./query');
+var database = require('./database')
+/*
+type 
+    3 = int
+    253 = string
+    128 = datetime
+*/
 
-class Objeto {
+class Objeto extends database {
     
     constructor() {
-        this.status = 0
-        this.response = 'Aguardando'
-        this.Rows = []
-        this.Cols = []
+        super()
+    }   
+
+    
+
+    query(where = '', campos = '*', l1 = 0, l2 = 100) {
+        var sSQL = 'select ' + campos + ' from usuario'        
+        if (where.toString().length > 0)
+            sSQL += ' where ' + where
+        sSQL += ' limit ' + l1 + ',' + l2
+        return this.tquery(sSQL)
+    }
+    
+    query(sSQL) {        
+        return this.tquery(sSQL)
     }
 
-    query() {
-        const sSQL = 'select * from usuario'
-        tool_query(sSQL).then((retorno) => {
-            
-            if (retorno.err !== null) {
-                this.status = 500
-                this.response = retorno.err
-                return false
-            }
-
-            for(var i = 0, len = retorno.fields.length; i < len; ++i) {
-                this.Cols.push({
-                    name:retorno.fields[i].name,
-               })
-            }
-
-            // console.log()
-
-            for(var i = 0, leni = retorno.result.length; i < leni; ++i) {    
-
-                const dados = []
-                for(var c = 0, lenc = this.Cols.length; c < lenc; ++c) {                    
-                    const dd = retorno.result[i][this.Cols[c].name]
-                    dados.push(dd)
-                }
-                this.Rows.push(dados) 
-            }
-
-            console.log(this.Rows)
-            
-        }).catch((err) => {
-            console.log(err)
-            
-        });
+    update(campos, where) {        
+        let sSQL = 'update usuarios set '
+        sSQL += ' nome ' + campos.nome
+        // sSQL += ' ,email ' + campos.email
+        sSQL += ' where id = ' + campos.id
+        return this.tupdate(sSQL)
     }
 }
 

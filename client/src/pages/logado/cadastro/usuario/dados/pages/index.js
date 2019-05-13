@@ -23,11 +23,11 @@ class Objeto extends Component {
     if (acao == 'novo') {
       this.setState({
         pg_pesquisar: false,
-        pg_cadastro: true
+        pg_cadastro: true,
+        id_localizado: -55
       })
     
     } else if (acao == 'editar') {
-      console.log('editando', params)
       this.setState({
         pg_pesquisar: false,
         pg_cadastro: true,
@@ -64,7 +64,7 @@ class Objeto extends Component {
                 (() => {
                   
                   if (this.state.pg_cadastro) 
-                    return <Cadastro />
+                    return <Cadastro id_localizado={this.state.id_localizado} />
 
                   else if (this.state.pg_pesquisar) 
                     return <Pesquisa handleClick={this.handleClick.bind(this)} />

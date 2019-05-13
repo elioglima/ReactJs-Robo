@@ -12,9 +12,6 @@ const mysql = require('mysql');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
-var usuario = require('./database/usuarios');
-usuario.query()
-
 var app = express();
 
 app.use(bodyParser.json());
@@ -43,6 +40,8 @@ app.use('/api/acesso/logar', require('./routes/api/acesso/auth_login'));
 app.use('/api/acesso/auth', require('./routes/api/acesso/auth_app'));
 
 app.use('/api/app/logado/cadastro/usuario/pesquisa/lista', require('./routes/api/app/logado/cadastro/usuario/pesquisa/lista'));
+app.use('/api/app/logado/cadastro/usuario/cadastro/dados', require('./routes/api/app/logado/cadastro/usuario/cadastro/dados'));
+app.use('/api/app/logado/cadastro/usuario/cadastro/gravar', require('./routes/api/app/logado/cadastro/usuario/cadastro/gravar'));
 
 app.use('/bots/api/browser/acesso/auth', require('./routes/bots/api/browser/auth_app'));
 app.use('/bots/api/browser/mensagens', require('./routes/bots/api/browser/lista_mensagens'));

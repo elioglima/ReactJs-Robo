@@ -1,11 +1,11 @@
 const pool = require('./pool');
 
-aquery = (sSQL) => {
+aupdate = (sSQL) => {
     // var sSQL = 'select id, nome from usuarios';
     return new Promise(
         function(resolve, reject) { 
             try {
-
+                console.log(sSQL)
                 pool.query(sSQL, function (err, result, fields) {
                     if (err) reject(err)
                     resolve({
@@ -25,6 +25,6 @@ aquery = (sSQL) => {
 }
 
 module.exports = (s)  =>  { 
-    async function Execute(x) { return await aquery(x); }
+    async function Execute(x) { return await aupdate(x); }
     return Execute(s)
 }  
