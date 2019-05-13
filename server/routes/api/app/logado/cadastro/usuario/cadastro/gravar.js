@@ -17,8 +17,7 @@ router.post('/', function (req, res) {
     }
 
     var usuario = require('../../../../../../../database/usuarios');
-    console.log(dados)
-    usuario.update(dados, '')
+    usuario.update(dados)
     .then(() => {        
         res.status(200).json({response:'Dados gravados com sucesso.'});     
     }).catch((err) => {

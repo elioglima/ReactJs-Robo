@@ -14,7 +14,10 @@ class Objeto extends database {
         super()
     }   
 
-    
+    listar() {        
+        const sSQL = 'select g.id, g.descricao from usuario_grupo g limit 0,100'
+        return this.tquery(sSQL)
+    }
 
     query(where = '', campos = '*', l1 = 0, l2 = 100) {
         var sSQL = 'select ' + campos + ' from usuario'        
@@ -29,7 +32,7 @@ class Objeto extends database {
     }
 
     update(campos) {        
-        let sSQL = 'update usuario set '
+        let sSQL = 'update usuario_grupo set '
         sSQL += ' nome = ' + slib.asp(campos.nome)
         // sSQL += ' ,email ' + campos.email
         sSQL += ' where id = ' + campos.id

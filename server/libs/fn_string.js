@@ -1,5 +1,7 @@
 'use strict';
 
+module.exports.asp = (i) => { return "'" + i + "'" };  
+
 module.exports.ifthen = (c, t, f) => {
     if (c) 
         return t;

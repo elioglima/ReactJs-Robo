@@ -28,13 +28,13 @@ class Objeto extends React.Component {
             this.props.api_dados_usuario_gravar(this.props.dados)
             .then((p) => {
                 this.setState({ msgs: p.body.response });
-                setTimeout(() => { this.handleClose() }, 1000);
+                setTimeout(() => { isLoading:false, this.handleClose() }, 500);
             })
             .catch((p) => { 
                 this.setState({ isLoading:false, msgs: p.body.response });                      
             })    
             
-        }, 2000);
+        }, 1000);
         
     }
 
@@ -44,8 +44,7 @@ class Objeto extends React.Component {
     }
   
     handleShow() {
-        console.log(this.props.dados)
-      this.setState({ show: true });      
+      this.setState({ isLoading:false, show: true, msgs: 'Deseja Salvar os dados?' });      
     }
   
     render() {        

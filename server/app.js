@@ -47,7 +47,6 @@ app.use('/bots/api/browser/acesso/auth', require('./routes/bots/api/browser/auth
 app.use('/bots/api/browser/mensagens', require('./routes/bots/api/browser/lista_mensagens'));
 app.use('/bots/api/browser/mensagens/enviar', require('./routes/bots/api/browser/recebe_mensagem'));
 
-
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
