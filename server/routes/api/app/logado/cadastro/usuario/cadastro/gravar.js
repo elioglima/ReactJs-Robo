@@ -16,6 +16,16 @@ router.post('/', function (req, res) {
         return false
     }
 
+    if(!dados.hasOwnProperty('nome')) {
+        res.status(500).json({response:'faltando parametro'});     
+        return false
+    }
+
+    if(!dados.hasOwnProperty('grupo')) {
+        res.status(500).json({response:'faltando parametro'});     
+        return false
+    }
+
     var usuario = require('../../../../../../../database/usuarios');
     usuario.update(dados)
     .then(() => {        

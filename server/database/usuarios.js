@@ -31,10 +31,9 @@ class Objeto extends database {
     update(campos) {        
         let sSQL = 'update usuario set '
         sSQL += ' nome = ' + slib.asp(campos.nome)
-        // sSQL += ' ,email ' + campos.email
+        sSQL += ' ,grupo = ' + slib.asp(campos.grupo.value.toString())
         sSQL += ' where id = ' + campos.id
         console.log(sSQL)
-
         return this.tupdate(sSQL)
     }
 }

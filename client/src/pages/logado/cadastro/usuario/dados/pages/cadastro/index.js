@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { FormControl, Form, Button } from 'react-bootstrap';
 import * as Actions from "./src";
 import GravarDados from "./components/gravar_dados";
-
+import Select from 'react-select';
 class Objeto extends Component {
 
     constructor() {
@@ -15,8 +15,8 @@ class Objeto extends Component {
                 email: '',
                 senha: '',
                 grupo: 0,
-                grupo_descricao: '',
-            }
+            },
+            RowsGrupo: [{value:0,label:''}]
         };
     }
 
@@ -33,13 +33,19 @@ class Objeto extends Component {
         this.props.api_dados_usuario_cadastro(this.props.id_localizado)
             .then((p) => {
                 this.setState({
-                    dados: p.body.Row
+                    dados: p.body.Row,
+                    RowsGrupo: p.body.RowsGrupo,
                 })
+
+                console.log(p)
             })
             .catch((p) => { console.log(p) })
     }
-    
+
     render() {
+
+        var items = this.RowsGrupo
+
         return (
             <div>
                 <nav className="navbar navbar-light bg-light">
@@ -58,20 +64,44 @@ class Objeto extends Component {
                         </div>
                         <div className='form-group col-md-6'>
                             <label>Nome Completo</label>
-                            <input type="text" className="form-control"                                 
-                                onChange={e => { 
+                            <input type="text" className="form-control"
+                                onChange={e => {
                                     this.setState({ dados: { ...this.state.dados, ['nome']: e.target.value } });
                                 }}
-                                value={this.state.dados.nome} 
-                                />
+                                value={this.state.dados.nome}
+                            />
                         </div>
                         <div className='form-group col-md-4'>
                             <label>Grupo</label>
-                            <input type="text" className="form-control" value={this.state.dados.grupo_descricao} onChange={e => this.setState({ dados: { grupo_descricao: e.target.value } })} />
-                        </div>
+                            <Select
+                                value={this.state.dados.grupo}
+                                onChange={(e) => { 
+                                    this.setState({ dados: { ...this.state.dados, ['grupo']: e } }); }}
+                                options={this.state.RowsGrupo} />
+                        </div> 
+
+                        <div className='form-group col-md-6'>
+                            <label>e-mail</label>
+                            <input type="text" className="form-control"
+                                onChange={e => {
+                                    this.setState({ dados: { ...this.state.dados, ['email']: e.target.value } });
+                                }}
+                                value={this.state.dados.email}
+                            />
+                        </div>     
+
+                        <div className='form-group col-md-6'>
+                            <label>Senha</label>
+                            <input type="password" className="form-control"
+                                onChange={e => {
+                                    this.setState({ dados: { ...this.state.dados, ['senha']: e.target.value } });
+                                }}
+                                value={this.state.dados.senha}
+                            />
+                        </div>                     
                     </div>
                     <br />
-                                        
+
 
                 </div>
             </div>

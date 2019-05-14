@@ -25,8 +25,7 @@ router.post('/', function (req, res) {
             nome: usuario.getCell(0, 'nome'),
             email: usuario.getCell(0, 'email'),
             senha: usuario.getCell(0, 'senha'),
-            grupo: usuario.getCell(0, 'grupo'),
-            grupo_descricao: usuario.getCell(0, 'descricao'),
+            grupo: {value:usuario.getCell(0, 'grupo'), label:usuario.getCell(0, 'descricao')} ,
         }
 
         usuario_grupo.listar()
@@ -37,8 +36,8 @@ router.post('/', function (req, res) {
                 for (let index = 0; index < usuario_grupo.Rows.length; index++) {
                     const element = usuario_grupo.Rows[index];
                     const Row = {
-                        id: element[0],
-                        descricao: element[1],
+                        value: element[0],
+                        label: element[1],
                     }
 
                     RowsGrupo.push(Row)
