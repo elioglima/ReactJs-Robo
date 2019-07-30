@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-var pool = require('../../../../../../../configs/priv_database');
 
 router.post('/', function (req, res) {
     var token = require('../../../../../../../libs/token');            

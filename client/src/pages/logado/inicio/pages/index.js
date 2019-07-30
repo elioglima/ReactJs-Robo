@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import * as Actions from "../src/actions";
 import Navbars from './components/nav';
 import base64 from 'base-64'
+import '../css/styles.css'
+
 class Objeto extends Component {  
   
   timeout = 0
@@ -28,6 +30,7 @@ class Objeto extends Component {
   componentWillMount() {    
     this.timeout = setInterval(this.countingSecond, 1000) 
     this.countingSecond()
+    
   }
 
   componentWillUnmount() {    
@@ -59,7 +62,7 @@ class Objeto extends Component {
     return (
       <div>
         <Navbars dados={this.props.dados} />
-        <div className='col-md-12 bg-secondary text-white' >Bem Vindo, {this.state.nome}
+        <div className='TesteBemVindo col-md-12 bg-secondary text-white' >Bem Vindo, {this.state.nome}
         <span className="float-right">{this.state.data_exibicao}</span>
         </div>
         <div className="base_tela">
