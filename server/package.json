@@ -15,7 +15,7 @@
     "deasync": "^0.1.14",
     "debug": "~2.6.9",
     "ejs": "^2.5.9",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "fs": "0.0.1-security",
     "http-errors": "~1.6.2",
     "morgan": "~1.9.0",
